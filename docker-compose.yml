@@ -6,11 +6,7 @@ services:
     environment:
       # [REQUIRED] The hostname/domain pointed to 
       # the IP of the server running this service. 
-      # SSL will automatically be set up and
-      #  renewed with LetsEncrypt.
       - HOSTNAME=your.host.name
-      # [REQUIRED] Email for SSL
-      - SSL_CONTACT_EMAIL=YourEmail@gmail.com
       # Maximum XSS callback payload size
       # This includes the webpage screenshot, DOM HTML,
       # page text, and other metadata. Note that if the
@@ -42,14 +38,8 @@ services:
       - DATABASE_HOST=postgresdb
       - NODE_ENV=production
     ports:
-      - "80:80"
-      - "443:443"
+      - "3000:3000"
     volumes:
-      # Stores the SSL/TLS certificates and keys
-      # in the "ssldata" directory.
-      # Your certificates are automatically renewed
-      # via LetsEncrypt, no extra work needed!
-      - ./ssldata:/app/greenlock.d
       # Directory where payload fire images are stored.
       - ./payload-fire-images:/app/payload-fire-images
     # Comment out if you're using an external SQL

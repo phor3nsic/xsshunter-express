@@ -3,6 +3,8 @@
 
 The fastest way to set up XSS Hunter to test and find blind cross-site scripting vulnerabilities.
 
+**WITHOUT SSL**
+
 ## Setup (Five minutes, try not to skim too much)
 
 ### Requirements
@@ -17,7 +19,6 @@ To set up XSS Hunter Express, modify the [`docker-compose.yaml`](https://github.
 The following are some YAML fields (in [`docker-compose.yaml`](https://github.com/mandatoryprogrammer/xsshunter-express/blob/main/docker-compose.yml)) you'll need to modify before starting the service:
 
 * `HOSTNAME`: Set this field to your hostname you want to use for your payloads and to access the web admin panel. Often this is as short as possible (e.g. `xss.ht`) so the payload can be fit into various fields for testing. This hostname should be mapped to the IP address of your instance (via a DNS `A` record).
-* `SSL_CONTACT_EMAIL`: In order to automatically set up and renew TLS/SSL certificates via [Let's Encrypt](https://letsencrypt.org/) you'll need to provide an email address.
 
 The following are needed if you want email notifications:
 
@@ -50,8 +51,6 @@ docker-compose up xsshunterexpress
 
 Assuming all has gone well, you'll see an admin password printed onto your screen. Use this to log into the web panel now hosted at `https://your-hostname.com/admin/`.
 
-**NOTE**: The very first HTTP request to your instance will be slow due to the fact that the service will automatically generate a TLS/SSL certificate. This should only take ~15 seconds.
-
 ## Features
 * **Managed XSS payload fires**: Manage all of your XSS payloads in your XSS Hunter account's control panel.
 * **Powerful XSS Probes**: The following information is collected everytime a probe fires on a vulnerable page:
@@ -67,7 +66,6 @@ Assuming all has gone well, you'll see an admin password printed onto your scree
     * Browser's reported time
     * If the payload was fired in an iframe 
 * **Fully Dockerized**: Modify the config with your custom settings and launch with a single command!
-* **Automagically TLS/SSL Setup & Renewal**: Just create the proper DNS records and XSS Hunter Express with automatically utilize LetsEncrypt to set up and renew the appropriate TLS/SSL certificates.
 * **`gzip`-Compressed Payload Fire Images**: All images are stored with `gzip` compression to utilize less hard disk space on your instance.
 * **Minimize Attack Surface**: Optionally disable the web UI altogether to minimize the attack surface of your instance.
 * **Full Page Screenshots**: XSS Hunter probes utilize the HTML5 canvas API to generate a full screenshot of the vulnerable page which an XSS payload has fired on. With this feature you can peak into internal administrative panels, support desks, logging systems, and other internal web apps. This allows for more powerful reports that show the full impact of the vulnerability to your client or bug bounty program.
